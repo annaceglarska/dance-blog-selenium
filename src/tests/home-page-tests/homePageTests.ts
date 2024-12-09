@@ -1,24 +1,18 @@
-import { By, Key, until, WebDriver } from 'selenium-webdriver';
+import { By, WebDriver } from 'selenium-webdriver';
 import { strict as assert } from 'assert';
 import { SeleniumTestConfig } from '../../config';
 
-describe('Dance blog home page ', function () {
+describe('Dance blog home page ', () => {
     let driver: WebDriver;
 
-    before(async function () {
-        const driverInstance = new SeleniumTestConfig().init()
+    before(async () => {
+        const driverInstance = await new SeleniumTestConfig().init()
         if (driverInstance) {
             driver = driverInstance;
         } else {
             throw new Error("WebDriver initialization error")
         }
-    });
 
-    after(async function () {
-        await driver.quit();
-    });
-
-    it('should contains title', async function () {
         await driver.get(process.env.WEBSIDE_URL!);
 
         await driver.wait(async () => {
@@ -26,8 +20,19 @@ describe('Dance blog home page ', function () {
             return readyState === 'complete';
         }, 10000);
 
-        const title = await driver.findElement(By.css("h1"));
+        await driver.sleep(1000)
+    });
+
+    after(async () => {
+        await driver.quit();
+    });
+
+    it('should contains title', async () => {
+        const textTitle = 'Dance blog'
+
+        const title = await driver.findElement(By.css('h1'));
         const text = await title.getText()
-        assert.equal(text, 'Dance blog')
+
+        assert.equal(text, textTitle)
     });
 });

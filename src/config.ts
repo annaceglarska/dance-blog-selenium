@@ -8,7 +8,7 @@ export class SeleniumTestConfig {
 
     driver: WebDriver | null = null;
 
-    init(): WebDriver | null {
+    async init(): Promise<WebDriver | null> {
         if (!(process.env.BROWSER === "chrome" || "edge" || "firefox")) {
             return null;
         }
@@ -20,6 +20,9 @@ export class SeleniumTestConfig {
             .forBrowser(process.env.BROWSER!)
             .setLoggingPrefs(logPrefers)
             .build()
+
+        await this.driver.manage().window().maximize()
+
         return this.driver
     }
 
