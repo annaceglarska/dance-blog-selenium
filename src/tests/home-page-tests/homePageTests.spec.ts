@@ -1,12 +1,13 @@
 import { By, WebDriver } from 'selenium-webdriver';
-import { strict as assert } from 'assert';
-import { SeleniumTestConfig } from '../../config';
+import { SeleniumTestConfig } from '../../config.ts';
+import { expect } from 'chai';
 
 describe('Dance blog home page ', () => {
     let driver: WebDriver;
 
     before(async () => {
         const driverInstance = await new SeleniumTestConfig().init()
+
         if (driverInstance) {
             driver = driverInstance;
         } else {
@@ -33,6 +34,6 @@ describe('Dance blog home page ', () => {
         const title = await driver.findElement(By.css('h1'));
         const text = await title.getText()
 
-        assert.equal(text, textTitle)
+        expect(text).to.equal(textTitle)
     });
 });

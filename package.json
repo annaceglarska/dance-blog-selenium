@@ -2,18 +2,20 @@
   "name": "dance-blog-selenium",
   "version": "1.0.0",
   "description": "",
-  "main": "main.ts",
+  "type": "module",
   "scripts": {
     "build": "tsc",
-    "test": "mocha -r ts-node/register src/**/*.ts --timeout 100000"
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^5.0.1",
     "@types/mocha": "^10.0.10",
     "@types/node": "^22.10.1",
     "@types/selenium-webdriver": "^4.1.27",
+    "chai": "^5.1.2",
     "mocha": "^11.0.1",
     "selenium-webdriver": "^4.27.0",
     "ts-node": "^10.9.2",

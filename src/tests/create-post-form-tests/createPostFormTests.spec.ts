@@ -1,12 +1,13 @@
-import { Actions, By, WebDriver, WebElement } from 'selenium-webdriver';
-import { strict as assert } from 'assert';
-import { SeleniumTestConfig } from '../../config';
+import { By, WebDriver, WebElement } from 'selenium-webdriver';
+import { SeleniumTestConfig } from '../../config.ts';
 import { v4 } from 'uuid';
+import { expect } from 'chai';
 
 describe('Create post form ', () => {
     let driver: WebDriver;
 
     before(async () => {
+
         const driverInstance = await new SeleniumTestConfig().init()
         if (driverInstance) {
             driver = driverInstance;
@@ -78,11 +79,10 @@ describe('Create post form ', () => {
             if (isNewPostTitle || isNewPostContent) {
                 break;
             }
-
         }
 
-        assert.ok(isNewPostTitle, 'Correct title not found')
-        assert.ok(isNewPostContent, 'Correct content not found')
+        expect(isNewPostTitle).to.be.true;
+        expect(isNewPostContent).to.be.true;
 
     });
 

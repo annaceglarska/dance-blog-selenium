@@ -1,0 +1,24 @@
+{
+    "spec": "src/**/*.spec.ts",
+    "require": [
+        "ts-node/register",
+        "chai/register-assert.js",
+        "chai/register-expect.js",
+        "chai/register-should.js"
+    ],
+    "recursive": true,
+    "timeout": 1000000,
+    "extension": [
+        "ts"
+    ],
+    "exit": true,
+    "reporter": "spec",
+    "watch-files": [
+        "src/**/*.spec.ts",
+        "src/**/*.d.ts"
+    ],
+    "ui": "bdd",
+    "node-option": [
+        "loader=ts-node/esm"
+    ]
+}
